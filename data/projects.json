@@ -1,0 +1,62 @@
+[
+  {
+    "name": "This portfolio",
+    "status": "building",
+    "summary": "A hand-built static site with a twist: Playwright tests for navigation, accessibility and responsive layout must pass before every deploy.",
+    "proves": "test design, CI/CD gates, accessibility checks",
+    "tags": ["HTML", "CSS", "JavaScript", "Playwright", "GitHub Actions"],
+    "url": "https://github.com/Rohith-s98/Rohith-s98.github.io"
+  },
+  {
+    "name": "AI-assisted job-search pipeline",
+    "status": "live",
+    "summary": "A scheduled Node.js + PowerShell pipeline, built with an AI coding agent, that pulls roles from public job APIs, scores them and generates tailored documents. Kept private because it holds personal data; the full story is in Case files.",
+    "proves": "systems thinking, API integration, testing AI output",
+    "tags": ["Node.js", "PowerShell", "REST APIs", "Claude Code"],
+    "url": "#cases"
+  },
+  {
+    "name": "playwright-ts-framework",
+    "status": "planned",
+    "summary": "A production-style UI + API automation framework: Page Object Model, fixtures, parallel cross-browser runs, traces on failure and published HTML reports.",
+    "proves": "framework architecture, Playwright depth, CI at scale",
+    "tags": ["Playwright", "TypeScript", "POM", "GitHub Actions"],
+    "url": "https://github.com/Rohith-s98"
+  },
+  {
+    "name": "api-testing-pytest",
+    "status": "planned",
+    "summary": "API test suite in Python and pytest with schema validation, negative cases and a small k6 load test.",
+    "proves": "API testing, Python, performance basics",
+    "tags": ["Python", "pytest", "REST", "k6"],
+    "url": "https://github.com/Rohith-s98"
+  },
+  {
+    "name": "E-commerce storefront",
+    "status": "archive",
+    "summary": "React storefront with Redux Toolkit state, Firebase and Stripe checkout.",
+    "tags": ["React", "Redux Toolkit", "Firebase", "Stripe"],
+    "url": "https://github.com/Rohith-s98/E-Commerce-Web-Site"
+  },
+  {
+    "name": "E-commerce payment server",
+    "status": "archive",
+    "summary": "Node.js + Express backend that creates Stripe payments for the storefront.",
+    "tags": ["Node.js", "Express", "Stripe"],
+    "url": "https://github.com/Rohith-s98/E-comm-server"
+  },
+  {
+    "name": "Netflix clone",
+    "status": "archive",
+    "summary": "React app with banner, rows of titles fetched over Axios, and embedded trailers.",
+    "tags": ["React", "Axios", "YouTube embed"],
+    "url": "https://github.com/Rohith-s98/Netflix-Clone"
+  },
+  {
+    "name": "Multi-page Bootstrap blog",
+    "status": "archive",
+    "summary": "Static, responsive blog about web development, with login and sign-up pages.",
+    "tags": ["HTML", "CSS", "Bootstrap", "JavaScript"],
+    "url": "https://github.com/Rohith-s98/blog-static-bootstrap"
+  }
+]

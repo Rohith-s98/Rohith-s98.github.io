@@ -1,0 +1,30 @@
+[
+  {
+    "type": "read",
+    "title": "Just Say No to More End-to-End Tests (Google Testing Blog)",
+    "why": "Why piling on E2E tests slows feedback, and why the test pyramid still matters.",
+    "date": "2026-10-14",
+    "url": "https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html"
+  },
+  {
+    "type": "read",
+    "title": "The Practical Test Pyramid (martinfowler.com)",
+    "why": "A hands-on walk through every layer of a test suite, from unit to contract to UI.",
+    "date": "2026-10-14",
+    "url": "https://martinfowler.com/articles/practical-test-pyramid.html"
+  },
+  {
+    "type": "read",
+    "title": "Flaky Tests at Google and How We Mitigate Them",
+    "why": "How flakiness behaves at scale, and why treating it as a signal beats hitting retry.",
+    "date": "2026-10-14",
+    "url": "https://testing.googleblog.com/2016/05/flaky-tests-at-google-and-how-we.html"
+  },
+  {
+    "type": "read",
+    "title": "Playwright: Best Practices (official docs)",
+    "why": "User-facing locators, test isolation and web-first assertions, in short and opinionated form.",
+    "date": "2026-10-14",
+    "url": "https://playwright.dev/docs/best-practices"
+  }
+]
