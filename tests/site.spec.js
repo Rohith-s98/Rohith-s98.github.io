@@ -4,17 +4,31 @@ import AxeBuilder from '@axe-core/playwright';
 
 const SECTIONS = ['home', 'thinking', 'cases', 'lab', 'notebook', 'contact'];
 
+// Like a real user: any mouse move wakes the dock, then hovering it keeps it open (it auto-hides after 3s idle).
+async function hoverDock(page, nav) {
+  await page.mouse.move(300, 300);
+  const link = page.locator(nav === 'brand' ? '#brand' : `#dock a[data-nav="${nav}"]`);
+  await expect(page.locator('#dock')).not.toHaveClass(/is-hidden/);
+  const box = await link.boundingBox();
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  return link;
+}
+
 test.describe('intro', () => {
-  test('types the mantra, then reveals the page', async ({ page }) => {
+  test('writes the mantra in script, then reveals the page', async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('#introText')).toHaveText('trust the process.', { timeout: 5000 });
-    await expect(page.locator('#intro')).toBeHidden({ timeout: 5000 });
+    await expect(page.locator('#introText')).toHaveText('Trust the process.');
+    await expect(page.locator('#intro')).toHaveClass(/is-writing/, { timeout: 3000 });
+    const font = await page.locator('#introText').evaluate((el) => getComputedStyle(el).fontFamily);
+    expect(font).toContain('Great Vibes');
+    await expect(page.locator('#intro')).toBeHidden({ timeout: 6000 });
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
   });
 
   test('is skipped on the second visit in the same session', async ({ page }) => {
     await page.goto('/');
-    await page.locator('#intro').click();
+    await page.keyboard.press('Escape'); // any key skips the intro
+    await expect(page.locator('#intro')).toBeHidden({ timeout: 3000 });
     await page.reload();
     await expect(page.locator('#intro')).toBeHidden();
   });
@@ -32,10 +46,42 @@ test.describe('page (intro skipped)', () => {
 
   test('dock navigates and highlights the active section', async ({ page, isMobile }) => {
     test.skip(isMobile, 'Home link is hidden on small screens; covered on desktop');
-    await page.locator('.dock a[href="#lab"]').click();
+    await (await hoverDock(page, 'lab')).click();
     await expect(page).toHaveURL(/#lab$/);
     await expect(page.locator('#lab h2')).toBeInViewport();
     await expect(page.locator('.dock a[data-nav="lab"]')).toHaveClass(/is-active/);
+  });
+
+  test('dock slides away after 3s idle and returns on mouse move', async ({ page, isMobile }) => {
+    test.skip(isMobile, 'Pointer behaviour; covered on desktop');
+    const dock = page.locator('#dock');
+    await page.mouse.move(300, 300);
+    // No further input: it should slide away on its own (3s idle; generous timeout for slow CI).
+    await expect(dock).toHaveClass(/is-hidden/, { timeout: 8000 });
+    // One mouse move brings it back. Checked in-page right after the move, so a slow runner can't race the 3s idle timer.
+    await page.mouse.move(320, 320);
+    expect(await dock.evaluate((el) => el.classList.contains('is-hidden'))).toBe(false);
+  });
+
+  test('on touch screens the dock does not idle-hide', async ({ page, isMobile }) => {
+    test.skip(!isMobile, 'Touch behaviour');
+    await page.waitForTimeout(3600);
+    await expect(page.locator('#dock')).not.toHaveClass(/is-hidden/);
+  });
+
+  test('dock stays while hovered', async ({ page, isMobile }) => {
+    test.skip(isMobile, 'Pointer behaviour; covered on desktop');
+    await hoverDock(page, 'cases');
+    await page.waitForTimeout(3600);
+    await expect(page.locator('#dock')).not.toHaveClass(/is-hidden/);
+  });
+
+  test('contact offers LinkedIn and GitHub, no email or phone', async ({ page }) => {
+    const contact = page.locator('#contact');
+    await expect(contact.getByRole('link', { name: /LinkedIn/ })).toHaveAttribute('href', /linkedin\.com\/in\//);
+    await expect(contact.getByRole('link', { name: /GitHub/ })).toBeVisible();
+    const html = await page.content();
+    expect(html).not.toMatch(/mailto:|@gmail\.com|\+91/);
   });
 
   test('test runner marks all five specs as passed', async ({ page }) => {
@@ -47,7 +93,7 @@ test.describe('page (intro skipped)', () => {
   test('accent badge cycles the theme colour', async ({ page }) => {
     const accent = () => page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--accent').trim());
     const before = await accent();
-    await page.locator('#brand').click();
+    await (await hoverDock(page, 'brand')).click();
     expect(await accent()).not.toBe(before);
   });
 

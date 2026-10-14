@@ -34,10 +34,16 @@ h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; margin: 0; }
   background: var(--ink); color: var(--bg); transition: transform .8s cubic-bezier(.7,0,.2,1), opacity .8s;
 }
 .intro.is-done { transform: translateY(-100%); opacity: .6; pointer-events: none; }
-.intro__line { font: 600 clamp(28px, 6vw, 64px)/1.1 var(--mono); letter-spacing: -0.03em; margin: 0; }
-.caret { display: inline-block; width: .55em; height: .9em; margin-left: .08em; background: var(--accent); vertical-align: -0.08em; animation: blink 1s steps(1) infinite; }
-.intro__skip { position: absolute; bottom: 24px; right: 24px; background: none; border: 0; color: var(--muted); font: 13px var(--mono); cursor: pointer; }
-@keyframes blink { 50% { opacity: 0; } }
+/* The mantra is "written" left to right in script, then underlined. */
+.intro { grid-template-rows: auto auto; align-content: center; gap: 4px; }
+.intro__line { font: 400 clamp(52px, 10vw, 120px)/1.25 "Great Vibes", "Segoe Script", cursive; margin: 0; padding: 0 .25em; }
+.intro__line span { display: inline-block; padding: 0 .12em; clip-path: inset(-20% 100% -20% 0); }
+.intro.is-writing .intro__line span { animation: write 1.9s cubic-bezier(.45,.05,.35,1) forwards; }
+.intro__rule { justify-self: center; width: min(420px, 60vw); height: 2px; background: var(--accent); border-radius: 2px; transform: scaleX(0); transform-origin: left; }
+.intro.is-writing .intro__rule { animation: rule .6s 1.8s ease-out forwards; }
+.intro__skip { position: absolute; bottom: 24px; right: 24px; background: none; border: 0; color: #8fa3a1; font: 13px var(--mono); cursor: pointer; }
+@keyframes write { to { clip-path: inset(-20% -5% -20% 0); } }
+@keyframes rule { to { transform: scaleX(1); } }
 html.no-intro .intro { display: none; }
 
 /* ---------- Pointer spotlight ---------- */
@@ -158,8 +164,9 @@ li[data-state="flaky"] .st::before { content: "!"; color: #fb923c; }
 /* ---------- Contact / footer ---------- */
 .contact { text-align: center; } .contact .block__sub { margin-bottom: 26px; }
 .contact__links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.contact__note { color: var(--muted); font-size: 14px; margin: 14px 0 0; }
 .footer { position: relative; z-index: 1; text-align: center; color: var(--muted); font-size: 13px; padding: 0 20px 120px; }
-.mantra { font: 600 20px var(--mono); color: var(--ink); margin: 0 0 6px; }
+.mantra { font: 400 40px/1.2 "Great Vibes", "Segoe Script", cursive; color: var(--ink); margin: 0 0 6px; }
 
 /* ---------- Dock ---------- */
 .dock {

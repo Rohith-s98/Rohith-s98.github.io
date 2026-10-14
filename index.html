@@ -11,13 +11,14 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f1e24'/%3E%3Ctext x='16' y='21' font-family='monospace' font-size='14' font-weight='700' fill='%23f3f6f5' text-anchor='middle'%3ERS%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Intro: types a line, then lifts away. Skipped on repeat visits and for reduced motion. -->
+  <!-- Intro: the mantra is "written" in script, underlined, then the curtain lifts. Skipped on repeat visits and for reduced motion. -->
   <div class="intro" id="intro" aria-hidden="true">
-    <p class="intro__line"><span id="introText"></span><span class="caret"></span></p>
+    <p class="intro__line"><span id="introText">Trust the process.</span></p>
+    <span class="intro__rule"></span>
     <button class="intro__skip" type="button">skip</button>
   </div>
 
@@ -29,7 +30,7 @@
       <div class="hero__copy">
         <p class="eyebrow">Rohith S · Quality Engineer · Kochi, India</p>
         <h1>I find where systems break, <span class="accent">then make sure they don't.</span></h1>
-        <p class="lede">For 4+ years I've been making high-stakes software trustworthy: an Azure migration with zero data lost, an automation framework a team actually reuses, and release calls made on evidence, not hope. Playwright and TypeScript by trade. Systems thinking by habit.</p>
+        <p class="lede">For 4+ years I've been making high-stakes software trustworthy: a legacy-to-Azure migration checked side by side, down to columns and stored procedures; an automation framework a team actually reuses; and release calls made on evidence, not hope. Playwright and TypeScript by trade. Systems thinking by habit.</p>
         <div class="hero__cta">
           <a class="btn btn--solid" href="#cases">See how I solve problems</a>
           <a class="btn" href="#contact">Get in touch</a>
@@ -45,7 +46,7 @@
         </div>
         <ol class="runner__list" id="runList">
           <li data-state="idle"><span class="st"></span>builds a reusable Playwright + TypeScript framework (POM)</li>
-          <li data-state="idle"><span class="st"></span>proves data integrity with SQL: 0 rows lost in an Azure migration</li>
+          <li data-state="idle"><span class="st"></span>validates migrations: legacy vs Azure, app and database, side by side</li>
           <li data-state="idle"><span class="st"></span>wires automated suites into CI/CD</li>
           <li data-state="idle"><span class="st"></span>leads QA for major releases, from strategy to UAT</li>
           <li data-state="idle"><span class="st"></span>asks "how could this fail?" before "does it work?"</li>
@@ -94,13 +95,13 @@
       <div class="cases">
         <details class="case glow" open>
           <summary>
-            <span class="case__tag">Infosys · Data integrity</span>
-            <h3>Moving a system to Azure without losing a single row</h3>
+            <span class="case__tag">Infosys · Migration testing</span>
+            <h3>Proving a migrated system behaves exactly like the old one</h3>
           </summary>
           <dl class="case__body">
-            <dt>Problem</dt><dd>A critical on-premise application was moving to Microsoft Azure under strict compliance requirements. Any silent data loss or mis-mapping between layers would surface months later as a business problem.</dd>
-            <dt>Approach</dt><dd>Treated data as the product under test: complex SQL queries to verify accuracy, consistency and mapping between system layers, plus application behaviour checked across every environment. Test plans and sign-off reports made release readiness explicit.</dd>
-            <dt>Outcome</dt><dd><strong>Zero data loss</strong> through the migration, with documented evidence for sign-off.</dd>
+            <dt>Problem</dt><dd>A legacy on-premise web application was moving to Microsoft Azure under compliance requirements. "It deploys" isn't the same as "it behaves the same", and differences hide in both the UI and the database.</dd>
+            <dt>Approach</dt><dd>Ran the legacy and migrated web apps side by side with one-to-one tests, so every flow had a baseline to compare against. On the database side, checked tables column by column and verified the stored procedures ran correctly after the move. Test plans and sign-off reports made release readiness explicit.</dd>
+            <dt>Outcome</dt><dd>The migration was <strong>validated layer by layer, app and database</strong>, against the system it replaced.</dd>
           </dl>
         </details>
         <details class="case glow">
@@ -178,7 +179,7 @@
       </header>
       <ol class="timeline">
         <li><span class="when">Oct 2024 to now</span><div><h3>Software Tester · Quintet Solutions, Ernakulam</h3><p>Playwright + TypeScript framework, CI/CD, API testing, Datadog, release QA lead for a client SaaS platform.</p></div></li>
-        <li><span class="when">2021 to 2024</span><div><h3>Test Engineer · Infosys, Trivandrum</h3><p>Azure migration with zero data loss, SQL data validation, functional and regression suites, compliance sign-offs.</p></div></li>
+        <li><span class="when">2021 to 2024</span><div><h3>Test Engineer · Infosys, Trivandrum</h3><p>Legacy-to-Azure migration validation (app and database), SQL checks, functional and regression suites, compliance sign-offs.</p></div></li>
         <li><span class="when">2017 to 2021</span><div><h3>B.Tech, Mechanical Engineering · College of Engineering, Trivandrum</h3><p>CGPA 9.28. Engineering school drilled one habit into me: find the failure mode before the field does.</p></div></li>
       </ol>
       <div class="stack">
@@ -192,10 +193,10 @@
       <h2>Have a system that needs to be trustworthy?</h2>
       <p class="block__sub">Open to remote and Kerala-based roles in SDET, QA automation and quality engineering.</p>
       <div class="contact__links">
-        <a class="btn btn--solid" href="mailto:rsvrohiths98@gmail.com">rsvrohiths98@gmail.com</a>
-        <a class="btn" href="https://www.linkedin.com/in/rohith-s-518970233" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn btn--solid" href="https://www.linkedin.com/in/rohith-s-518970233" target="_blank" rel="noopener">Message me on LinkedIn ↗</a>
         <a class="btn" href="https://github.com/Rohith-s98" target="_blank" rel="noopener">GitHub ↗</a>
       </div>
+      <p class="contact__note">I reply fastest on LinkedIn.</p>
     </section>
   </main>
 

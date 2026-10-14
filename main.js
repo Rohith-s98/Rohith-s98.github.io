@@ -14,22 +14,16 @@ $('#year').textContent = new Date().getFullYear();
   const el = $('#intro');
   const skipIntro = reduceMotion || store.get('introSeen') || new URLSearchParams(location.search).has('nointro');
   if (skipIntro) { document.documentElement.classList.add('no-intro'); store.set('introSeen', '1'); return; }
-  const text = 'trust the process.';
-  const out = $('#introText');
-  let i = 0, done = false;
+  let done = false;
   const finish = () => {
     if (done) return; done = true;
     store.set('introSeen', '1');
     el.classList.add('is-done');
     setTimeout(() => document.documentElement.classList.add('no-intro'), 900);
   };
-  const type = () => {
-    if (done) return;
-    out.textContent = text.slice(0, ++i);
-    if (i < text.length) setTimeout(type, i === 6 ? 220 : 55 + Math.random() * 45);
-    else setTimeout(finish, 650);
-  };
-  setTimeout(type, 250);
+  // Wait for the script font so the writing doesn't start in a fallback face.
+  const start = () => { el.classList.add('is-writing'); setTimeout(finish, 3000); };
+  Promise.race([document.fonts.load('1em "Great Vibes"'), new Promise((r) => setTimeout(r, 800))]).then(() => setTimeout(start, 150));
   el.addEventListener('click', finish);
   window.addEventListener('keydown', finish, { once: true });
 })();
@@ -103,17 +97,26 @@ if (!reduceMotion && matchMedia('(pointer: fine)').matches) {
   });
 })();
 
-/* ---------- Dock: hide on scroll down, show on scroll up / near bottom; active section ---------- */
+/* ---------- Dock: slides away after 3s of no activity, pops back on any mouse move / scroll / key.
+   Stays put while hovered or focused, and hides early when scrolling down. ---------- */
 (function dock() {
   const dock = $('#dock');
-  let lastY = scrollY;
+  const IDLE_MS = 3000;
+  let timer = 0, lastY = scrollY;
+  // Touch screens have no mouse to "wake" it, so there it only hides while scrolling down.
+  const idleHide = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const busy = () => dock.matches(':hover') || dock.contains(document.activeElement);
+  const hide = () => { if (!busy()) dock.classList.add('is-hidden'); else arm(); };
+  const arm = () => { clearTimeout(timer); if (idleHide) timer = setTimeout(hide, IDLE_MS); };
+  const wake = () => { dock.classList.remove('is-hidden'); arm(); };
+  ['pointermove', 'pointerdown', 'keydown', 'touchstart'].forEach((ev) => window.addEventListener(ev, wake, { passive: true }));
   window.addEventListener('scroll', () => {
     const y = scrollY;
-    const nearEnd = innerHeight + y > document.body.scrollHeight - 80;
-    dock.classList.toggle('is-hidden', y > lastY && y > 300 && !nearEnd);
+    if (y > lastY + 4 && y > 300) { dock.classList.add('is-hidden'); arm(); } else wake();
     lastY = y;
   }, { passive: true });
-  window.addEventListener('pointermove', (e) => { if (innerHeight - e.clientY < 90) dock.classList.remove('is-hidden'); }, { passive: true });
+  dock.addEventListener('focusin', wake);
+  arm();
   const links = $$('.dock a');
   const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach((en) => {
