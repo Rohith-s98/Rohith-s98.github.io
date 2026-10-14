@@ -5,7 +5,7 @@ Personal portfolio of **Rohith S**, a quality engineer who finds where systems b
 Live: https://rohith-s98.github.io (after the first deploy)
 
 ## What's interesting here
-- **Tests gate deploys.** Playwright checks run on every push: navigation, the interactive test runner, data loading, horizontal overflow, safe external links, console errors, and WCAG 2 A/AA accessibility (axe). They run on desktop and mobile viewports. GitHub Pages only deploys when they pass ([workflow](.github/workflows/deploy.yml)).
+- **Tests gate deploys.** Playwright checks run on every push: navigation, the interactive test runner, data loading, horizontal overflow, safe external links, console errors, and WCAG 2 A/AA accessibility (axe). They run on 6 devices (desktop, Android, iPhone SE, iPhone 13, iPad portrait and landscape); in CI the iPhone/iPad runs use WebKit, the engine behind Safari. GitHub Pages only deploys when they pass ([workflow](.github/workflows/deploy.yml)).
 - **No framework, no build step.** Plain HTML, CSS and JavaScript, so there's nothing to break between source and production.
 - **Content lives in data.** Projects and notebook entries are JSON files, so adding one is a one-line change.
 - **Accessible motion.** The intro, scroll reveals and pointer effects all switch off under `prefers-reduced-motion`.

@@ -124,6 +124,31 @@ test.describe('page (intro skipped)', () => {
     expect(overflow).toBeLessThanOrEqual(0);
   });
 
+  test('every element fits the screen width', async ({ page }) => {
+    const wide = await page.evaluate(() => {
+      const vw = document.documentElement.clientWidth;
+      return [...document.querySelectorAll('main *, .dock, .footer *')]
+        .filter((el) => { const r = el.getBoundingClientRect(); return r.width > 0 && (r.right > vw + 1 || r.left < -1); })
+        .filter((el) => !el.closest('.runner__bar code')) // ellipsised on purpose
+        .map((el) => `${el.tagName.toLowerCase()}.${el.className}`.slice(0, 60));
+    });
+    expect(wide).toEqual([]);
+  });
+
+  test('dock shows every link without clipping', async ({ page }) => {
+    const dock = page.locator('#dock');
+    const clipped = await dock.evaluate((el) => el.scrollWidth > el.clientWidth + 1);
+    expect(clipped).toBe(false);
+    for (const a of await dock.locator('a:visible').all()) await expect(a).toBeInViewport();
+  });
+
+  test('text stays readable (no font under 12px)', async ({ page }) => {
+    const tiny = await page.evaluate(() => [...document.querySelectorAll('main p, main li, main a, main h3, main span, .dock a')]
+      .filter((el) => el.offsetParent && el.textContent.trim() && parseFloat(getComputedStyle(el).fontSize) < 11.5)
+      .map((el) => el.textContent.trim().slice(0, 30)));
+    expect(tiny).toEqual([]);
+  });
+
   test('external links open safely in a new tab', async ({ page }) => {
     const unsafe = await page.locator('a[target="_blank"]:not([rel*="noopener"])').count();
     expect(unsafe).toBe(0);
