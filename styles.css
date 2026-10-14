@@ -239,3 +239,8 @@ li[data-state="flaky"] .st::before { content: "!"; color: #fb923c; }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* Skill rows: proven vs learning */
+.stack__label { font: 600 12px var(--mono); text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 26px 0 0; }
+.stack__label a { color: var(--accent-deep); text-decoration: none; text-transform: none; letter-spacing: 0; }
+.stack--learning span { border-style: dashed; background: transparent; }

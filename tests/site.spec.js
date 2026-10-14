@@ -46,6 +46,8 @@ test.describe('page (intro skipped)', () => {
 
   test('dock navigates and highlights the active section', async ({ page, isMobile }) => {
     test.skip(isMobile, 'Home link is hidden on small screens; covered on desktop');
+    // This checks navigation, not animation: jump instantly so a slow machine can't race the smooth scroll.
+    await page.emulateMedia({ reducedMotion: 'reduce' });
     await (await hoverDock(page, 'lab')).click();
     await expect(page).toHaveURL(/#lab$/);
     await expect(page.locator('#lab h2')).toBeInViewport();

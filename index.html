@@ -30,7 +30,7 @@
       <div class="hero__copy">
         <p class="eyebrow">Rohith S · Quality Engineer · Kochi, India</p>
         <h1>I find where systems break, <span class="accent">then make sure they don't.</span></h1>
-        <p class="lede">For 4+ years I've been making high-stakes software trustworthy: a legacy-to-Azure migration checked side by side, down to columns and stored procedures; an automation framework a team actually reuses; and release calls made on evidence, not hope. Playwright and TypeScript by trade. Systems thinking by habit.</p>
+        <p class="lede">For 4+ years I've been making high-stakes software trustworthy: data checked in the database column by column, so it can be trusted; an automation framework a team actually reuses; and release calls made on evidence, not hope. Playwright and TypeScript by trade. Systems thinking by habit.</p>
         <div class="hero__cta">
           <a class="btn btn--solid" href="#cases">See how I solve problems</a>
           <a class="btn" href="#contact">Get in touch</a>
@@ -46,7 +46,7 @@
         </div>
         <ol class="runner__list" id="runList">
           <li data-state="idle"><span class="st"></span>builds a reusable Playwright + TypeScript framework (POM)</li>
-          <li data-state="idle"><span class="st"></span>validates migrations: legacy vs Azure, app and database, side by side</li>
+          <li data-state="idle"><span class="st"></span>checks data integrity in the database: columns, stored procedures, SQL</li>
           <li data-state="idle"><span class="st"></span>wires automated suites into CI/CD</li>
           <li data-state="idle"><span class="st"></span>leads QA for major releases, from strategy to UAT</li>
           <li data-state="idle"><span class="st"></span>asks "how could this fail?" before "does it work?"</li>
@@ -70,7 +70,7 @@
         <article class="principle glow">
           <span class="num">02</span>
           <h3>Make the invisible measurable</h3>
-          <p>A system you can't see is a system you can't trust. SQL reconciliation, Datadog dashboards and alerts turn "seems fine" into evidence.</p>
+          <p>A system you can't see is a system you can't trust. SQL checks in the database, Datadog dashboards and alerts turn "seems fine" into evidence.</p>
         </article>
         <article class="principle glow">
           <span class="num">03</span>
@@ -95,13 +95,13 @@
       <div class="cases">
         <details class="case glow" open>
           <summary>
-            <span class="case__tag">Infosys · Migration testing</span>
-            <h3>Proving a migrated system behaves exactly like the old one</h3>
+            <span class="case__tag">Infosys · Manual, database &amp; API testing</span>
+            <h3>Making sure the data tells the truth</h3>
           </summary>
           <dl class="case__body">
-            <dt>Problem</dt><dd>A legacy on-premise web application was moving to Microsoft Azure under compliance requirements. "It deploys" isn't the same as "it behaves the same", and differences hide in both the UI and the database.</dd>
-            <dt>Approach</dt><dd>Ran the legacy and migrated web apps side by side with one-to-one tests, so every flow had a baseline to compare against. On the database side, checked tables column by column and verified the stored procedures ran correctly after the move. Test plans and sign-off reports made release readiness explicit.</dd>
-            <dt>Outcome</dt><dd>The migration was <strong>validated layer by layer, app and database</strong>, against the system it replaced.</dd>
+            <dt>Problem</dt><dd>An enterprise web application with regular releases and compliance requirements. A bug can hide in three places: what users see, the APIs behind it, and the data underneath. A screen can look right while the database is wrong.</dd>
+            <dt>Approach</dt><dd>Tested all three layers. <strong>UI:</strong> functional and regression suites, by hand, across browsers and environments. <strong>APIs:</strong> requests and responses checked in Postman. <strong>Data:</strong> SQL queries to check tables column by column and confirm stored procedures behaved. When the app moved from legacy servers to Azure, the same habit applied: compare old and new, one to one.</dd>
+            <dt>Outcome</dt><dd>Releases signed off on <strong>evidence from every layer</strong>, backed by test plans and sign-off reports.</dd>
           </dl>
         </details>
         <details class="case glow">
@@ -179,11 +179,16 @@
       </header>
       <ol class="timeline">
         <li><span class="when">Oct 2024 to now</span><div><h3>Software Tester · Quintet Solutions, Ernakulam</h3><p>Playwright + TypeScript framework, CI/CD, API testing, Datadog, release QA lead for a client SaaS platform.</p></div></li>
-        <li><span class="when">2021 to 2024</span><div><h3>Test Engineer · Infosys, Trivandrum</h3><p>Legacy-to-Azure migration validation (app and database), SQL checks, functional and regression suites, compliance sign-offs.</p></div></li>
+        <li><span class="when">2021 to 2024</span><div><h3>Test Engineer · Infosys, Trivandrum</h3><p>Manual functional and regression testing, database testing for data integrity (SQL, stored procedures), API testing with Postman. Part of a legacy-to-Azure migration.</p></div></li>
         <li><span class="when">2017 to 2021</span><div><h3>B.Tech, Mechanical Engineering · College of Engineering, Trivandrum</h3><p>CGPA 9.28. Engineering school drilled one habit into me: find the failure mode before the field does.</p></div></li>
       </ol>
+      <p class="stack__label">Use at work</p>
       <div class="stack">
-        <span>Playwright</span><span>TypeScript</span><span>JavaScript</span><span>SQL</span><span>REST APIs</span><span>Postman</span><span>CI/CD</span><span>GitHub</span><span>Datadog</span><span>Page Object Model</span><span>TestRail</span><span>Python (learning)</span>
+        <span>Manual testing</span><span>Playwright</span><span>TypeScript</span><span>JavaScript</span><span>SQL &amp; DB testing</span><span>API testing</span><span>Postman</span><span>CI/CD</span><span>GitHub</span><span>Datadog</span><span>Page Object Model</span><span>TestRail</span>
+      </div>
+      <p class="stack__label">Learning now <a href="#lab">· proving each one in the Lab</a></p>
+      <div class="stack stack--learning">
+        <span>Python</span><span>pytest</span><span>Docker</span><span>Cypress</span><span>k6</span><span>Testing AI features</span>
       </div>
     </section>
 
