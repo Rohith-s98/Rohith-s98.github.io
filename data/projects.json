@@ -1,7 +1,7 @@
 [
   {
     "name": "This portfolio",
-    "status": "building",
+    "status": "live",
     "summary": "A hand-built static site with a twist: Playwright tests for navigation, accessibility and responsive layout must pass before every deploy.",
     "proves": "test design, CI/CD gates, accessibility checks",
     "tags": ["HTML", "CSS", "JavaScript", "Playwright", "GitHub Actions"],
