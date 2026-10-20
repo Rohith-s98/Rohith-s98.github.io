@@ -2,8 +2,8 @@
   {
     "name": "This portfolio",
     "status": "live",
-    "summary": "A hand-built static site with a twist: Playwright tests for navigation, accessibility and responsive layout must pass before every deploy.",
-    "proves": "test design, CI/CD gates, accessibility checks",
+    "summary": "A static site built with an AI coding agent from my requirements, with a twist: Playwright tests for navigation, accessibility and responsive layout must pass before every deploy. Its pipeline is where I'm starting to learn CI/CD.",
+    "proves": "requirements, reviewing AI-built work, accessibility checks",
     "tags": ["HTML", "CSS", "JavaScript", "Playwright", "GitHub Actions"],
     "url": "https://github.com/Rohith-s98/Rohith-s98.github.io"
   },
