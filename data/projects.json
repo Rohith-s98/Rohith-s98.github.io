@@ -8,14 +8,6 @@
     "url": "https://github.com/Rohith-s98/Rohith-s98.github.io"
   },
   {
-    "name": "AI-assisted job-search pipeline",
-    "status": "live",
-    "summary": "A scheduled Node.js + PowerShell pipeline, built with an AI coding agent, that pulls roles from public job APIs, scores them and generates tailored documents. Kept private because it holds personal data; the full story is in Case files.",
-    "proves": "systems thinking, API integration, testing AI output",
-    "tags": ["Node.js", "PowerShell", "REST APIs", "Claude Code"],
-    "url": "#cases"
-  },
-  {
     "name": "playwright-ts-framework",
     "status": "planned",
     "summary": "A production-style UI + API automation framework: Page Object Model, fixtures, parallel cross-browser runs, traces on failure and published HTML reports.",
